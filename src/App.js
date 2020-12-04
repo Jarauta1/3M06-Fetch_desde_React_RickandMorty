@@ -7,14 +7,12 @@ let url = "https://rickandmortyapi.com/api/character/"
 function Personaje(props) {
  let {nombre} = useParams()
  for (let i=0; i < props.data.length;i++) {
-  console.log(nombre)
-  console.log(props.data[i].name)
    if (nombre === props.data[i].name) {
       return(<>
         <h1>{props.data[i].name}</h1>
         <img src={props.data[i].image} width="100"/>
         <p>Sexo: {props.data[i].gender}</p>
-        <p>Especie: {props.data[i].especies}</p>
+        <p>Especie: {props.data[i].species}</p>
         <p>Lugar: {props.data[i].location.name}</p>
       </>) 
     } 
@@ -33,7 +31,6 @@ function App() {
   useEffect(function(){
     setIsloading(true)
     fetch(url).then(respuesta=>respuesta.json()).then(datos=>{
-console.log(datos)
       setData(datos.results)
       setPage(datos.info)
       setIsloading(false)
