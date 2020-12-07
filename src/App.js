@@ -2,8 +2,6 @@ import './App.css';
 import {useState, useEffect} from "react"
 import {BrowserRouter,Route,Link, useParams} from "react-router-dom"
 
-let url = "https://rickandmortyapi.com/api/character/"
-
 function Personaje(props) {
  let {nombre} = useParams()
  for (let i=0; i < props.data.length;i++) {
@@ -22,7 +20,7 @@ function Personaje(props) {
 }
 
 function App() {
-
+  let [url,setUrl] = useState("https://rickandmortyapi.com/api/character/")
   let [data,setData] = useState([])
   let [page,setPage] = useState([])
   let [isLoading,setIsloading] = useState(false)
@@ -48,12 +46,12 @@ function App() {
 
   function anterior() {
     if (page.prev != null) {
-    url = page.prev
+    setUrl(page.prev)
     setNum(num-1)}
   }
   function siguiente() {
     if (page.next != null) {
-    url = page.next
+    setUrl(page.next)
     setNum(num+1)
     }
   }
